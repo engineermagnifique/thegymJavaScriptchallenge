@@ -40,9 +40,10 @@ first over all, install
 
 ```
 npm install lodash //for window
-``
+```
 
 #### run this code to see the changes
+
 ```
 
 const lodash=require("lodash");
@@ -66,19 +67,19 @@ console.log(deepCopy);
 deepCopy.address="Gasabo";
 deepCopy.name="NIRAGIRE"
 console.log(deepCopy.details());
-
 ```
+
 go in your terminal and write
-```
 
+```
 node rodashCopy.js
 
 ```
 
 ### Explanation
+
 Explanation: Both objects have different properties after the modification. Also, the methods of each object are differently defined and produce different outputs.
 
 Understanding the difference between shallow copy and deep copy in JavaScript is key to managing data safely and effectively. While a shallow copy is simple and quick, it can lead to unintended side effects when dealing with nested objects.
 
 Deep copy, on the other hand, ensures that objects are fully independent, making your code more predictable. Depending on the complexity of your data structure, you can choose between using native JavaScript methods like JSON.parse()/JSON.stringify() or libraries like Lodash for a more robust solution.
-```
