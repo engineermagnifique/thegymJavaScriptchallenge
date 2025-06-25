@@ -5,11 +5,11 @@ let employee={
     salary:50000,
 }
 console.log("Employee ",employee);
-let newEmployee=employee; //shallow copy
+let newEmployee=JSON.parse(JSON.stringify(employee));
+//JSON.parse() it is method that transforms it into a JavaScript and JSON.stringfy() takes a JavaScript object as an argument and transform it to JSON string
 console.log("New employee ",newEmployee);
 
 console.log("After modification");
 newEmployee.name="Magnifique";
 console.log("Old ",employee);
 console.log("New ",newEmployee)
-//for shallow copy the effects in one object affect other as it has the same memory address and we can address this issue by using deep copy 
