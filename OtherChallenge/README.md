@@ -83,3 +83,29 @@ Explanation: Both objects have different properties after the modification. Also
 Understanding the difference between shallow copy and deep copy in JavaScript is key to managing data safely and effectively. While a shallow copy is simple and quick, it can lead to unintended side effects when dealing with nested objects.
 
 Deep copy, on the other hand, ensures that objects are fully independent, making your code more predictable. Depending on the complexity of your data structure, you can choose between using native JavaScript methods like JSON.parse()/JSON.stringify() or libraries like Lodash for a more robust solution.
+
+## Composite functions
+
+```
+function add(x){
+    return x+3;
+}
+function mul(x){
+    return x*3;
+}
+function composite(z,k)
+{
+    return function(x){
+        return z(k(x));
+    }
+}
+var res=composite(add,mul)(4);
+console.log("The result is ",res);
+```
+
+ompose combines add and multiply, so the output of multiply is passed as input to add.
+The result of compose(add, mul)(4) is 14 because 4 is first multiplied by 3 and then 2 is added.
+
+```
+node functionComposite.js
+```
