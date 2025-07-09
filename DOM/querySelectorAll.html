@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The use of query selector</title>
+    <script>
+        const log=document.querySelector("#log");
+        function random(number){
+            return Math.floor(Math.random()*number);
+        }
+        function setBackgroundColor(id)
+        {
+            log.textContent="";
+            try{
+                const elements=document.querySelectorAll(`${id}`);
+                const randomColor=`rgb(${random(255)} ${random(255)} ${random(255)})`;
+                elements[0].style.backgroundColor=randomColor;
+            } catch(e)
+            {
+                log.textContent=e;
+            }
+        }
+        document.querySelector("#no-escape").addEventListener("click", () => {
+  setBackgroundColor("this?element");
+});
+
+document.querySelector("#css-escape").addEventListener("click", () => {
+  setBackgroundColor(CSS.escape("this?element"));
+});
+
+document.querySelector("#manual-escape").addEventListener("click", () => {
+  setBackgroundColor("this\\?element");
+});
+    </script>
+    <style>
+        div{
+           background-color: blue;
+           margin:1rem 0;
+           height:100px;
+           width:200px;  
+        }
+    </style>
+</head>
+<body>
+    <div id="this?element"></div>
+    <button id="no-escape">No escape</button>
+    <button id="css-escape">CSS escape</button>
+    <button id="manual-escape">manual-escape</button>
+
+    <pre id="log"></pre>
+</body>
+</html>

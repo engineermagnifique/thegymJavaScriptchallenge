@@ -1,0 +1,20 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+        <h1>We are trying to implement event listener here</h1>
+    </div>
+    <script>
+    const mainHeading = document.querySelector('.main');
+
+    mainHeading.addEventListener('click', function () {
+    mainHeading.style.color="red";
+    console.log('The heading was clicked!');
+});
+</script>
+</body>
+</html>
