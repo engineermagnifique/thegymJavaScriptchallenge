@@ -1,0 +1,34 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .box {
+  border: 2px solid green;
+  width: 100px;
+  height: 100px;
+}
+</style>
+<body>
+</script>
+<div id="box" class="box"></div>
+
+<form name="FormName">
+  <button id="btn1">Make border 20px-wide</button>
+  <button id="btn2">Make border 5px-wide</button>
+</form>
+<script>
+    function setBorderWidth(width) {
+  document.getElementById("box").style.borderWidth = `${width}px`;
+}
+document.getElementById("btn1").addEventListener('click', () => {
+  setBorderWidth(20);
+});
+document.getElementById("btn2").addEventListener('click', () => {
+  setBorderWidth(5);
+});
+</script>
+</body>
+</html>

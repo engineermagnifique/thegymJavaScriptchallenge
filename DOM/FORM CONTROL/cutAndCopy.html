@@ -1,0 +1,20 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="input">
+    <script>
+        input.onpaste=function(e){
+            alert("You are not allowed to paste here, "+event.clipboardData.getData('text/plain'));
+            e.preventDefault();
+        };
+        input.oncut=input.oncopy=function(e){
+            alert(event.type+'-'+document.getSelection());
+            e.preventDefault();
+        };
+    </script>
+</body>
+</html>

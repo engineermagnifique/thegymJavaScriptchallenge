@@ -1,0 +1,54 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tree Object</title>
+</head>
+<body>
+    <div id="container"></div>
+    <script>
+        let newData = {
+  "Fish": {
+    "trout": {},
+    "salmon": {}
+  },
+
+  "Tree": {
+    "Huge": {
+      "sequoia": {},
+      "oak": {}
+    },
+    "Flowering": {
+      "apple tree": {},
+      "magnolia": {}
+    }
+  }
+};
+function createTree(container,obj)
+{
+    console.log('triggled');
+    container.append(createTreeDom(obj));
+}
+function createTreeDom(obj)
+{
+    if(!Object.keys(obj).length) return;
+    let ul=document.createElement('ul');
+    for(let key in obj)
+    {
+        let li=document.createElement('li');
+        li.innerHTML=key;
+
+        let childObj=createTreeDom(obj[key]);
+        if(childObj)
+        {
+            li.append(childObj);
+        }
+        ul.append(li);
+    }
+    return ul;
+}
+let container=document.getElementById('container');
+    createTree(container,newData);
+</script>
+</body>
+</html>

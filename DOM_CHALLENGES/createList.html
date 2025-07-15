@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="cont">
+       <h1>create a list</h1>
+       <script>
+       let list=document.createElement('ul');
+       let item=document.createElement('li');
+       document.body.appendChild(list);
+      
+       while(true)
+       {
+            let data=prompt("Enter the text for list header"," ");
+            if(!data)
+            {
+                break;
+            }
+            let li=document.createElement('li');
+            li.textContent=data;
+            list.append(li);
+       }
+    </script>
+    </div>
+</body>
+</html>
