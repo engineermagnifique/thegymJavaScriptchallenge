@@ -1,0 +1,21 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Element</title>
+</head>
+<body>
+     <div id="green"/>
+     <div id="red">
+        I'm red circle
+     </div>
+     <button type="button" id="button">Click Me</button>
+     <script>
+        const button=document.querySelector('#button');
+        const removeRedCircle=()=>{
+           document.getElementById('red').remove();
+        };
+        button.addEventListener('click',removeRedCircle)
+     </script>
+</body>
+</html>

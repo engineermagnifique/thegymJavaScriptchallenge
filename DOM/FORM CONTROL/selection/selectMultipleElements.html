@@ -1,0 +1,28 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<ul id="list">
+<li>OFF</li>
+<li>OFF</li>
+<li>OFF</li>
+<li>OFF</li>
+<li>OFF</li>
+<li>OFF</li>
+</ul>
+<script>
+    let listItems=document.body.querySelectorAll('ul li');
+    for(let list of listItems)
+    {
+        list.addEventListener('click',()=>{
+            list.textContent="ON";
+            list.style.backgroundColor='red';
+        })
+        console.log(list);
+    }
+</script>
+</body>
+</html>

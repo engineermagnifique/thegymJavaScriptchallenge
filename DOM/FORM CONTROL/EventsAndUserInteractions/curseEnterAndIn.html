@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <div id="element">
+       Hover Me
+     </div>
+     <script>
+        let circle=document.getElementById('element');
+
+        function toogleColor(colors){
+            circle.style.color=`${colors}`;
+        }
+        circle.addEventListener('mouseover',()=>{
+            toogleColor('orange')
+        });
+        circle.addEventListener('mouseout',()=>{
+            toogleColor('black')
+        });
+     </script>
+</body>
+</html>

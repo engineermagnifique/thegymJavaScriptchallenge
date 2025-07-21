@@ -1,0 +1,152 @@
+/* Base styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 2rem;
+  padding: 0;
+  background-color: #ffffff;
+  color: #333;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Headings */
+h2, h4 {
+  margin-bottom: 1rem;
+}
+
+/* Input and controls */
+label {
+  display: inline-block;
+  margin: 0.5rem 1rem 0.5rem 0;
+}
+
+input, select, button {
+  padding: 0.4rem 0.6rem;
+  margin-right: 0.5rem;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+button {
+  cursor: pointer;
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #004d99;
+}
+
+/* Task list */
+#taskList,#taskView {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+.task {
+  background-color: #f9f9f9;
+  margin: 0.5rem 0;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-left-width: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: grab;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.task:hover {
+  background-color: #f0f0f0;
+  transform: scale(1.01);
+}
+
+/* Priority styling */
+.high {
+  border-left-color: red;
+}
+
+.medium {
+  border-left-color: orange;
+}
+
+.low {
+  border-left-color: green;
+}
+
+/* Done tasks */
+.done {
+  text-decoration: line-through;
+  color: gray;
+  background-color: #eee;
+}
+
+/* Search input */
+#searchInput {
+  margin: 1rem 0;
+  width: 300px;
+}
+
+/* Theme styles */
+body.dark {
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+}
+
+body.dark .task {
+  background-color: #2a2a2a;
+  color: #ddd;
+}
+
+body.dark button {
+  background-color: #444;
+  color: #f0f0f0;
+}
+
+body.dark button:hover {
+  background-color: #666;
+}
+
+body.dark input,
+body.dark select {
+  background-color: #333;
+  color: white;
+  border-color: #555;
+}
+
+/* DOM Inspector */
+#inspector {
+  margin-top: 2rem;
+  padding: 1rem;
+  border-top: 2px dashed #999;
+}
+
+#nodeDetails {
+  background-color: #f4f4f4;
+  padding: 0.75rem;
+  font-family: monospace;
+  white-space: pre-wrap;
+  border: 1px solid #ccc;
+}
+
+body.dark #nodeDetails {
+  background-color: #2e2e2e;
+  border-color: #444;
+  color: #ccc;
+}
+.itemView{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+   
+}
+.listTask{
+  width:40%;
+}
+.update{
+  padding:3px;
+}

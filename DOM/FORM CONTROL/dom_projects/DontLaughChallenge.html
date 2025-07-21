@@ -1,0 +1,79 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Laugh Challenge</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #laughChallenge {
+      background: #ffffffdd;
+      padding: 2rem 3rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      max-width: 600px;
+      text-align: center;
+    }
+
+    #jocker {
+      font-size: 1.5rem;
+      color: #333;
+      margin-bottom: 2rem;
+    }
+
+    #button {
+      background-color: #0077cc;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #button:hover {
+      background-color: #005fa3;
+    }
+  </style>
+</head>
+<body>
+  <div id="laughChallenge">
+    <h2>Don't Laugh Challenge</h2>
+    <h4 id="jocker">What do you get when you cross a pig and a pineapple? A porky pine</h3>
+    <button id="button">Get Another Joke</button>
+  </div>
+  <script>
+    let content=[
+    "What do you get when you cross a pig and a pineapple? A porky pine",
+    "What did the calculator say to the student? You can count on me.",
+    "How do you get a baby alien to sleep? You rocket.",
+    "As I suspected, someone has been adding soil to my garden. The plot thickens.",
+    "I just wrote a book on reverse psychology. Do not read it!",
+    ];
+
+    let jocker=document.getElementById('jocker');
+    let button=document.getElementById('button');
+
+    button.addEventListener('click',()=>{
+        let randomIndex=Math.floor(Math.random() * content.length);
+        console.log(content[randomIndex]);
+        jocker.textContent=content[randomIndex];
+    })
+
+ setInterval(()=> {
+        let randomIndex=Math.floor(Math.random() * content.length);
+        console.log(content[randomIndex]);
+        jocker.textContent=content[randomIndex];
+   },2000);    
+  </script>
+</body>
+</html>

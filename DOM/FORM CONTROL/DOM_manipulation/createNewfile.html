@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create new list</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f4f8;
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      width: 250px;
+      font-size: 16px;
+      border: 2px solid #ccc;
+      border-radius: 6px;
+      margin-right: 10px;
+      outline: none;
+    }
+
+    input[type="text"]:focus {
+      border-color: #007bff;
+    }
+
+    button {
+      padding: 10px 16px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin-top: 30px;
+      width: 300px;
+    }
+
+    li {
+      background-color: white;
+      padding: 12px 16px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      font-size: 16px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Create New List</h1>
+  <span id="validate"></span>
+  <div>
+    <input type="text" id="input" placeholder="To do..." />
+    <button type="button" id="button" onclick="addToList()">Add</button>
+  </div>
+  <ul id="list">
+    <li>Read a book</li>
+    <li>Lunch with Caro</li>
+    <li>Feed the dog</li>
+  </ul>
+  <script>
+      function addToList(){
+        let textInput=document.getElementById('input');
+        if(textInput.value===''){
+            console.log('triggled');
+            document.getElementById('validate').textContent='Please enter something here';
+            document.getElementById('validate').style.color='red';
+        } else {
+            console.log('triggled');
+            let ul=document.getElementById('list');
+            let li=document.createElement('li');
+            li.append(textInput.value);
+            document.getElementById('list').prepend(li);
+        }
+      }
+  </script>
+</body>
+</html>

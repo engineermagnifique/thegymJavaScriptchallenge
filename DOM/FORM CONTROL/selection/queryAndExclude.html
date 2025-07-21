@@ -1,0 +1,35 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="list">
+<li>OFF</li>
+<li>OFF</li>
+<li>OFF</li>
+<li id="disabled">OFF</li>
+<li>OFF</li>
+<li>OFF</li>
+<li id="disabled">OFF</li>
+<li>OFF</li>
+</ul>
+<button type="button" id="button">Click Me</button>
+<script>
+    let list=document.querySelectorAll('ul li');
+    function toogleAll(){
+    for(let element of list)
+    {
+         if(!element.hasAttributes('id'))
+         {
+            element.textContent='ON';
+            element.style.backgroundColor='red';
+         }
+    }
+}
+ document.getElementById('button').addEventListener('click',toogleAll);
+    console.log(list);
+</script>
+</body>
+</html>

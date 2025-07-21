@@ -1,0 +1,205 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testimonies Slider</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    #testmonies {
+      background-color: #fff;
+      width: 90%;
+      max-width: 700px;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    #container {
+      text-align: center;
+    }
+
+    #container > p:first-child {
+      font-size: 3rem;
+      color: #ccc;
+    }
+
+    .testmoni {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #333;
+      margin: 1rem 0;
+    }
+
+    #owner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    #owner img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      background-color: #ddd;
+    }
+
+    #owner p {
+      font-weight: bold;
+      color: #555;
+    }
+
+    #testmonies button {
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #0055cc;
+      color: white;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #testmonies button:hover {
+      background-color: #003e99;
+    }
+
+    @media (min-width: 600px) {
+      #testmonies {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      #container {
+        flex: 1;
+        padding: 0 2rem;
+      }
+
+      #testmonies button {
+        flex-shrink: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="testmonies">
+    <button id="prev">Previous</button>
+    <div id="container">
+    </div>
+    <button id="next">Next</button>
+  </div>
+  <script>
+    const testimonies = [
+  {
+    text: "Sriracha literally flexitarian irony, vape marfa unicorn. Glossier tattooed 8-bit, fixie waistcoat offal activated charcoal.",
+    name: "John Doe",
+    img: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?crop=faces&fit=crop&w=100&h=100"
+  },
+  {
+    text: "Absolutely love this product! It changed my workflow completely. The support team is also amazing.",
+    name: "Jane Smith",
+    img: "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?crop=faces&fit=crop&w=100&h=100"
+  },
+  {
+    text: "I never thought something so simple could make such a big difference. Stylish, easy to use, and effective.",
+    name: "Michael Brown",
+    img: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?crop=faces&fit=crop&w=100&h=100"
+  },
+  {
+    text: "From start to finish, the experience was seamless. I'm recommending it to all my colleagues and friends.",
+    name: "Emily Clark",
+    img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?crop=faces&fit=crop&w=100&h=100"
+  }
+];
+
+   let container=document.getElementById('container');
+   let currentIndex=1;
+   container.innerHTML=`
+        <p>"</p>
+      <p class="testmoni">
+        ${testimonies[1].text}
+      </p>
+      <div id="owner">
+        <img src="${testimonies[1].img}" alt="Owner">
+        <p>${testimonies[1].name}</p>
+      </div>
+   `
+   document.getElementById('prev').addEventListener('click',()=>{
+     currentIndex-=1;
+     if(currentIndex>=0){
+      container.innerHTML=`
+        <p>"</p>
+      <p class="testmoni">
+        ${testimonies[currentIndex].text}
+      </p>
+      <div id="owner">
+        <img src="${testimonies[currentIndex].img}" alt="Owner">
+        <p>${testimonies[currentIndex].name}</p>
+      </div>
+   `} else {
+     currentIndex=testimonies.length;
+     currentIndex-=1;
+      container.innerHTML=`
+        <p>"</p>
+      <p class="testmoni">
+        ${testimonies[currentIndex].text}
+      </p>
+      <div id="owner">
+        <img src="${testimonies[currentIndex].img}" alt="Owner">
+        <p>${testimonies[currentIndex].name}</p>
+      </div>
+   `
+   }
+   })
+   document.getElementById('next').addEventListener('click',()=>{
+      currentIndex+=1;
+      console.log(currentIndex);
+     if(currentIndex<testimonies.length){
+      container.innerHTML=`
+        <p>"</p>
+      <p class="testmoni">
+        ${testimonies[currentIndex].text}
+      </p>
+      <div id="owner">
+        <img src="${testimonies[currentIndex].img}" alt="Owner">
+        <p>${testimonies[currentIndex].name}</p>
+      </div>
+   `} else {
+     currentIndex=testimonies.length;
+     currentIndex-=1;
+      container.innerHTML=`
+        <p>"</p>
+      <p class="testmoni">
+        ${testimonies[currentIndex].text}
+      </p>
+      <div id="owner">
+        <img src="${testimonies[currentIndex].img}" alt="Owner">
+        <p>${testimonies[currentIndex].name}</p>
+      </div>
+   `
+   }
+   })
+  </script>
+</body>
+</html>

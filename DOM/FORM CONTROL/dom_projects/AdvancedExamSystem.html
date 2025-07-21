@@ -1,0 +1,384 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced exam app</title>
+    <style>
+        * {
+  box-sizing: border-box;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f4f7fb;
+  color: #333;
+  padding: 20px;
+}
+
+#container {
+  max-width: 800px;
+  margin: auto;
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+#header-container {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+#header-container button {
+  margin: 10px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #0057e7;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#header-container button:hover {
+  background-color: #003fb3;
+}
+
+#card-container {
+  display: flex;
+  justify-content: center;
+}
+
+#info {
+  text-align: center;
+  background-color: #e7f0ff;
+  padding: 25px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 500px;
+}
+
+#info h3 {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+#info p {
+  margin: 10px 0 5px;
+}
+
+input[type="number"],
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+#button {
+  padding: 12px 24px;
+  background-color: #0057e7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#button:hover {
+  background-color: #003fb3;
+}
+
+/* Question container styling */
+#questionContainer {
+  margin-top: 20px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+#questionContainer h2 {
+  margin-bottom: 20px;
+  color: #0057e7;
+}
+
+#questionContainer p {
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+input[type="radio"] {
+  margin-right: 8px;
+  accent-color: #0057e7;
+}
+
+label {
+  margin-right: 20px;
+  font-weight: normal;
+}
+
+#send {
+  display: block;
+  margin: 20px auto 0;
+  padding: 12px 30px;
+  background-color: #28a745;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#send:hover {
+  background-color: #1e7e34;
+}
+
+#questionContainer {
+  margin-top: 30px;
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+#questionContainer h2 {
+  margin-bottom: 20px;
+  color: #0057e7;
+  text-align: center;
+}
+
+.question-block {
+  margin-bottom: 25px;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+}
+
+.question-block p {
+  font-weight: 600;
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+}
+
+.option-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: 20px;
+}
+
+.option-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: normal;
+  font-size: 1rem;
+}
+
+.option-line input[type="radio"] {
+  transform: scale(1.2);
+  cursor: pointer;
+  accent-color: #0057e7;
+}
+
+#send {
+  display: block;
+  margin: 30px auto 0;
+  padding: 14px 36px;
+  background-color: #28a745;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#send:hover {
+  background-color: #1e7e34;
+}
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="header-container">
+            <center>
+              <button id="refresh">refresh</button>
+              <button id="viewScore">View marks</button>
+            </center>
+        </div>
+        <!-- step1 -->
+         <center>
+            <div id="card-container">
+                <div id="info">
+                <h3>Choose Exam structure</h3>
+                <p>Enter number of questions</p>
+                <input type="number" name="'number" placeholder="Enter a number of questions" id="questionNumber"/>
+                <p>Select category</p>
+                <select name="category" id="category">
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="difficult">Difficult</option>
+                </select>
+                <button id="button">Start now</button>
+                </div>
+            </div>
+         </center>
+    </div>
+    <script>
+        let questions=[
+         {
+            id:1,
+            question:`What is the capital city of RWANDA?`,
+            choices:['Kigali','Huye','Nyarugenge','Gasabo'],
+            score:4,
+            actualSolution:'Kigali',
+            category:'easy',
+          },
+          {
+            id:2,
+            question:`What is the capital city of Kenya?`,
+            choices:['Nairobi','Huye','Nyarugenge','Gasabo'],
+            score:4,
+            actualSolution:'Nairobi',
+            category:'medium',
+          },
+           {
+            id:3,
+            question:`What is the capital city of Uganda?`,
+            choices:['Nairobi','Kampala','Nyarugenge','Gasabo'],
+            score:4,
+            actualSolution:'Kampala',
+            category:'medium',
+          },
+           {
+            id:3,
+            question:`Who is the president of Rwanda?`,
+            choices:['Kagame','Kabila','Trump','Kenndy'],
+            score:4,
+            actualSolution:'Kagame',
+            category:'medium',
+          },
+           {
+            id:4,
+            question:`What is the capital city of Burundi?`,
+            choices:['Nairobi','Kampala','Nyarugenge','Bujumbura'],
+            score:4,
+            actualSolution:'Bujumbura',
+            category:'easy',
+          },
+           {
+            id:5,
+            question:`What is the capital city of France?`,
+            choices:['Nairobi','Kampala','Paris','Bujumbura'],
+            score:4,
+            actualSolution:'Paris',
+            category:'difficult',
+          },
+        ]
+        let step=1;
+        let container=document.getElementById('card-container');
+        let questionLength=document.getElementById('questionNumber');
+        let category=document.getElementById('category');
+        let startNow=document.getElementById('button');
+       
+        startNow.addEventListener('click', (e) => {
+           let filteredQuestion = questions.filter((element) => element.category === category.value);
+           let no = questionLength.value;
+           filteredQuestion = filteredQuestion.slice(0, no);
+
+           let randomQuestionIndex = Math.floor(Math.random() * questions.length);
+
+           let parent = document.createElement('div');
+           parent.id = 'questionContainer';
+
+           let fragment = new DocumentFragment();
+
+           let h2 = document.createElement('h2');
+           h2.textContent = 'Welcome to Exam App';
+
+           let count = 0;
+           let marks=0;
+           let totalScore=0;
+           for (let question of filteredQuestion) {
+               count += 1;
+           
+               let questionBlock = document.createElement('div');
+               questionBlock.className = 'question-block';
+
+               let quest = document.createElement('p');
+               quest.textContent = `${count}. ${question.question}`;
+
+               let optionGroup = document.createElement('div');
+               optionGroup.className = 'option-group';
+
+               question.choices.forEach((element, index) => {
+               let optionLine = document.createElement('div');
+               optionLine.className = 'option-line';
+
+               let option = document.createElement('input');
+               option.type = 'radio';
+               option.value = element;
+               option.name = `question${count}`;
+               option.classList.add('questionLine');
+
+               let label = document.createElement('label');
+               label.textContent = element;
+
+               optionLine.append(option, label);
+               option.addEventListener('click', () => {
+                totalScore+=question.score;
+                   if(option.value===question.actualSolution){
+                     marks+=question.score;
+                     label.style.color='green';
+                     option.disabled=true;
+                     console.log('Marks',marks);
+                   } else {
+                     label.style.color='red';
+                     option.disabled=true;
+                   }
+               });
+               optionGroup.append(optionLine);
+           });
+
+    questionBlock.append(quest, optionGroup);
+    fragment.append(questionBlock);
+}
+
+    let buttons = document.createElement('button');
+    buttons.id = 'send';
+    buttons.textContent = 'Submit an Exam';
+
+    
+    buttons.addEventListener('click', () => {
+       let cont=document.getElementById('questionContainer');
+       let name=prompt("Enter your name here"," ");
+       cont.innerHTML=`
+       <div class='Marks'>
+         <b>You have got ${marks} out of ${totalScore}
+       </div>
+       `
+       localStorage.setItem('name',name);
+       localStorage.setItem('marks',marks);
+    });
+
+    parent.append(h2, fragment, buttons);
+
+    document.getElementById('info').style.display = 'none';
+    step = 2;
+    container.append(parent);
+});
+
+       
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div id="wrapper">
+      <input type="text" value="OFF" readonly/>
+      <button type="button">Click Me</button>
+ </div>
+ <script>
+        let input=document.body.children[0].firstElementChild;
+        let button=document.body.children[0].lastElementChild;
+
+        button.addEventListener('click', ()=>{
+            console.log('triggled');
+            if(input.value==='OFF')
+            {
+                input.value='ON';
+                input.style.backgroundColor='red';
+            } else {
+                input.value='OFF';
+                input.style.backgroundColor='white';
+            }
+        })
+        console.log(button);
+ </script>
+</body>
+</html>

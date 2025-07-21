@@ -16,4 +16,4 @@ function order(words) {
   return result.join(' ');
 }
 
-console.log(order('is2 Thi1s T4est 3a')); // Output: "Thi1s is2 3a T4est"
+console.log(order('is2 Thi1s T4est 3a')); 

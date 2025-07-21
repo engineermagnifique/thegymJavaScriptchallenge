@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Basic Calculator</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f0f4f8;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    #container {
+      max-width: 400px;
+      margin: 60px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h3 {
+      color: #2c3e50;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    p {
+      margin: 12px 0 6px;
+      font-weight: 500;
+      color: #34495e;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+      width: 90%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    input:disabled {
+      background-color: #ecf0f1;
+      color: #2c3e50;
+    }
+
+    button {
+      padding: 10px 18px;
+      margin: 10px 6px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    #calculate {
+      background-color: #3498db;
+      color: white;
+    }
+
+    #calculate:hover {
+      background-color: #2980b9;
+    }
+
+    #reset {
+      background-color: #e74c3c;
+      color: white;
+    }
+
+    #reset:hover {
+      background-color: #c0392b;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <h3>Basic Calculator</h3>
+    <input type="text" value="Result" id="result" disabled />
+    
+    <p>Number1</p>
+    <input type="number" id="fNum" required />
+    
+    <p>Number2</p>
+    <input type="number" id="lNum" required />
+    
+    <p>Operator</p>
+    <select name="operations" id="operations">
+      <option value="add">+</option>
+      <option value="substract">-</option>
+      <option value="multiply">*</option>
+      <option value="divide">/</option>
+    </select>
+    
+    <button id="calculate">Calculate</button>
+    <button id="reset">Reset</button>
+  </div>
+  <script>
+    let result=document.getElementById('result');
+    let fNum=document.getElementById('fNum');
+    let lNum=document.getElementById('lNum');
+    let operand=document.getElementById('operations');
+
+    function doCalculate(){
+        if(operand.value==='add')
+        {
+            console.log('triggled');
+            let sum=parseFloat(fNum.value)+parseFloat(lNum.value)
+            result.value=`Result: ${sum}`;
+            fNum.value=" ";
+            lNum.value=" "; 
+        } else if(operand.value==='substract') {
+            let sub=parseFloat(fNum.value)-parseFloat(lNum.value)
+            result.value=`Result: ${sub}`;
+            fNum.value=" ";
+            lNum.value=" "; 
+        } else if(operand.value==='multiply') {
+            let pd=parseFloat(fNum.value)*parseFloat(lNum.value)
+            result.value=`Result: ${pd}`;
+            fNum.value=" ";
+            lNum.value=" "; 
+        } else {
+            let div=parseFloat(fNum.value)/parseFloat(lNum.value)
+            result.value=`Result: ${div}`;
+            fNum.value=" ";
+            lNum.value=" "; 
+        }
+    }
+    document.getElementById('calculate').addEventListener('click',()=>{
+        doCalculate();
+    });
+  </script>
+</body>
+</html>

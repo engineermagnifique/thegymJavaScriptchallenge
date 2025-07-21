@@ -1,0 +1,217 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f2f4f8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    #container {
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    #container h3 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #333;
+    }
+
+    span p {
+      margin: 0.8rem 0 0.3rem;
+      color: #555;
+      font-weight: 500;
+    }
+
+    label {
+      display: block;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 0.3rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 1rem;
+      transition: 0.2s ease;
+    }
+
+    input:focus {
+      border-color: #007bff;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.15);
+    }
+
+    span {
+      color: red;
+      font-size: 0.85rem;
+    }
+
+    #button {
+      margin-top: 1.2rem;
+      width: 100%;
+      padding: 10px 0;
+      background-color: #007bff;
+      color: white;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    #button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <h3>REGISTRATION FORM</h3>
+    <span>
+      <p>Username</p>
+      <label for="username" id="labelName">
+        <input type="text" placeholder="Enter username" id="username"/>
+      </label>
+
+      <p>Email</p>
+      <label for="email" id="labelEmail">
+        <input type="email" placeholder="Enter email" id="email" required/>
+      </label>
+
+      <p>Password</p>
+      <label for="password" id="labelPsw">
+        <input type="password" placeholder="Enter Password" id="psw"/>
+      </label>
+
+      <p>Confirm password</p>
+      <label for="confirmPassword" id="confirmPassword">
+        <input type="password" placeholder="Confirm password" id="pswConfirm"/>
+      </label>
+
+      <button id="button" onclick="validateAndSubmit()">SUBMIT</button>
+    </span>
+  </div>
+  <script>
+    let uName=document.getElementById('username');
+    let email=document.getElementById('email');
+    let psw=document.getElementById('psw');
+    let confirmPassword=document.getElementById('pswConfirm');
+    let button=document.getElementById('button');
+    function validateAndSubmit(){
+    }
+    function validateName(ev)
+    {
+        let span=document.createElement('span');
+        if(ev==='focusing') {
+           uName.style.borderWidth='3px';
+           uName.style.borderColor='red';
+           span.classList.add('error');
+           span.textContent='Username can\'t be empty';
+           document.getElementById('labelName').append(span);
+        } else {
+            span.textContent='';
+            uName.style.borderWidth='3px';
+            uName.style.borderColor='green';
+        }
+    }
+    uName.addEventListener('focus',()=>{
+        validateName('focusing');
+    })
+     uName.addEventListener('blur',()=>{
+        validateName('blur');
+    })
+    function validatePswLength(){
+         if(psw.value.length<8){
+           psw.style.borderWidth='3px';
+           psw.style.borderColor='red';
+           button.disabled=true;
+         } else {
+           psw.style.borderWidth='3px';
+           psw.style.borderColor='green';
+           button.disabled=false;
+         } 
+    }
+    function leavePsw(){
+         if(psw.value.length<8){
+           let span=document.createElement('span');
+           psw.style.borderWidth='3px';
+           psw.style.borderColor='red';
+           span.classList.add('error');
+           span.textContent='Password length must be greater than 8';
+           document.getElementById('labelPsw').append(span);
+         } else {
+           let span=document.createElement('span');
+           psw.style.borderWidth='3px';
+           psw.style.borderColor='green';
+           span.classList.add('error');
+           span.textContent='Validated';
+           document.getElementById('labelPsw').append(span);
+         } 
+    }
+    psw.addEventListener('input',()=>{
+        validatePswLength();
+    })
+     psw.addEventListener('blur',()=>{
+        leavePsw();
+    })
+     function validatePsw2Length(){
+         if(confirmPassword.value.length<8){
+           confirmPassword.style.borderWidth='3px';
+           confirmPassword.style.borderColor='red';
+           button.disabled=true;
+         } else {
+           confirmPassword.style.borderWidth='3px';
+           confirmPassword.style.borderColor='green';
+           button.disabled=false;
+         } 
+    }
+     function leavePsw(){
+        let span=document.createElement('span');
+        if(confirmPassword!==psw){
+           confirmPassword.style.borderWidth='3px';
+           confirmPassword.style.borderColor='red';
+           span.classList.add('error');
+           span.textContent='Password doesn\'t match ';
+           document.getElementById('confirmPassword').append(span);
+        }
+         else if(confirmPassword.value.length<8){
+           confirmPassword.style.borderWidth='3px';
+           confirmPassword.style.borderColor='red';
+           span.classList.add('error');
+           span.textContent='Password length must be greater than 8';
+           document.getElementById('confirmPassword').append(span);
+         } else {
+           confirmPassword.style.borderWidth='3px';
+           confirmPassword.style.borderColor='green';
+           span.classList.add('error');
+           span.textContent='Validated';
+           document.getElementById('confirmPassword').append(span);
+         } 
+    }
+    confirmPassword.addEventListener('input',()=>{
+        validatePsw2Length();
+    })
+     confirmPassword.addEventListener('blur',()=>{
+        leavePsw();
+    })
+  </script>
+</body>
+</html>

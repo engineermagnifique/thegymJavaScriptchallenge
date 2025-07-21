@@ -1,0 +1,20 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChangeId</title>
+</head>
+<body>
+    <div id="wrapper">
+      <input type="text" placeholder="Text" id="inputEl" readonly/>
+      <button type="button" onclick="changeInput()">Click Me</button>
+    </div>
+    <script>
+        function changeInput(){
+            let input=document.getElementById('inputEl');
+            input.classList.toggle('inputEl');
+            console.log(input.value);
+        }
+    </script>
+</body>
+</html>

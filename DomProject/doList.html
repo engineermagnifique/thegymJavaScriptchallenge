@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Smart To-Do List</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { font-family: sans-serif; margin: 2rem; }
+    .done { text-decoration: line-through; color: gray; }
+    .task { margin: 0.5rem 0; padding: 0.5rem; border: 1px solid #ccc; }
+    .high { border-left: 5px solid red; }
+    .medium { border-left: 5px solid orange; }
+    .low { border-left: 5px solid green; }
+    .dark { background: #222; color: #eee; }
+    .light { background: #fff; color: #000; }
+  </style>
+</head>
+<body class="light">
+  <h2>Smart To-Do List Manager</h2>
+  
+  <label>Task: <input id="taskInput" type="text" /></label>
+  <label>Priority:
+    <select id="prioritySelect">
+      <option value="low">Low</option>
+      <option value="medium" selected>Medium</option>
+      <option value="high">High</option>
+    </select>
+  </label>
+  <label>Category: <input id="categoryInput" type="text" /></label>
+  <label>Due Date: <input id="dateInput" type="date" /></label>
+  <button id="addBtn" onclick="addTask()">Add Task</button>
+  
+  <input type="text" id="searchInput" placeholder="Search tasks..." />
+
+  <button id="toggleTheme">Toggle Theme</button>
+  
+  <ul id="taskList">
+  </ul>
+
+  <div id="inspector">
+    <h4>DOM Inspector</h4>
+    <pre id="nodeDetails">Click a task to inspect</pre>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

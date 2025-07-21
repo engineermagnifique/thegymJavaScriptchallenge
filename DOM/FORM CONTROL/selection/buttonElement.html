@@ -1,0 +1,23 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+<body>
+    <button type="button" id="button">OFF</button>
+    <script>
+      let buttonElem=document.getElementById('button');
+      buttonElem.addEventListener('click',()=>{
+        const oldText=buttonElem.innerText;
+          if(button.innerText==='OFF'){
+          console.log('triggled');
+          buttonElem.style.backgroundColor='red';
+        } else {
+          buttonElem.style.backgroundColor='white';
+        }
+        return button.innerText= oldText==="ON"?'OFF':'ON';
+      });
+    </script>
+</body>
+</html>

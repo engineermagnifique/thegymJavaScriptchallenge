@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="wrapper">
+      <div id="element">
+         Move Me
+      </div>
+    </div>
+    <div/>
+    <script>
+        let move=document.getElementById('element');
+        let padLef=0;
+        function moveRight(pixel){
+            console.log(padLef);
+            padLef+=pixel;
+            move.style.marginLeft=`${padLef}px`;
+        }
+        move.addEventListener('mouseover',()=>{
+            moveRight(2);
+        })
+    </script>
+</body>
+</html>

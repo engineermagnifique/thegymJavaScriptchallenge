@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Device Filtering</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #f5f7fa;
+      padding: 30px;
+    }
+
+    #container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h3 {
+      color: #1e3a8a;
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+
+    #filter {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    #filter input {
+      border: none;
+      padding: 10px 14px;
+      background-color: #e0e7ff;
+      color: #1e3a8a;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: not-allowed;
+      text-align: center;
+    }
+
+    #search {
+      padding: 10px;
+      width: 60%;
+      max-width: 300px;
+      border: 2px solid #cbd5e1;
+      border-radius: 8px;
+      margin-right: 10px;
+    }
+
+    #button {
+      padding: 10px 20px;
+      background-color: #1e40af;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    #button:hover {
+      background-color: #1d4ed8;
+    }
+
+    #item-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .item {
+      background-color: #f0f4ff;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+
+    .item img {
+      width: 100%;
+      max-height: 150px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .item h3 {
+      font-size: 20px;
+      margin-bottom: 5px;
+      color: #1e3a8a;
+    }
+
+    .item p {
+      color: #475569;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <center>
+      <h3>PC COMPONENT</h3>
+      <div id="filter">
+        <input type="text" id="all" value="ALL" readonly/>
+        <input type="text" id="cpu" value="CPU" readonly/>
+        <input type="text" id="memory" value="MEMORY" readonly/>
+        <input type="text" value="MOTHERBOARD" readonly/>
+        <input type="text" value="OS" readonly/>
+        <input type="text" value="INPUT DEVICES" readonly/>
+        <input type="text" value="OUTPUT DEVICE" readonly/>
+        <input type="text" value="SOFTWARE" readonly/>
+        <input type="text" value="OTHERS" readonly/>
+      </div>
+      <input type="text" id="search" placeholder="Search item" />
+      <button type="button" id="button">Search</button>
+      <div id="item-container">
+      </div>
+    </center>
+  </div>
+  <script>
+    const devices = [
+  {
+    category: "ALL",
+    name: "Universal Adapter",
+    image: "https://m.media-amazon.com/images/I/61jRYWLXc8L._AC_SL1500_.jpg",
+    description: "Compatible with various PC components and international plugs."
+  },
+
+  {
+    category: "CPU",
+    name: "Intel Core i9-13900K",
+    image: "https://m.media-amazon.com/images/I/61pEToPawKL._AC_SL1500_.jpg",
+    description: "High-performance 24-core desktop processor for gaming and productivity."
+  },
+  {
+    category: "CPU",
+    name: "AMD Ryzen 9 7900X",
+    image: "https://m.media-amazon.com/images/I/81+QF+2aVLL._AC_SL1500_.jpg",
+    description: "12-core processor with multithreading support and PCIe Gen5."
+  },
+  {
+    category: "CPU",
+    name: "Intel Core i5-12400F",
+    image: "https://m.media-amazon.com/images/I/61c2bStZciL._AC_SL1500_.jpg",
+    description: "Affordable and efficient CPU for mid-range builds."
+  },
+
+  {
+    category: "MEMORY",
+    name: "Corsair Vengeance LPX 16GB",
+    image: "https://m.media-amazon.com/images/I/61XkU9QHflL._AC_SL1500_.jpg",
+    description: "DDR4 3200MHz RAM optimized for overclocking."
+  },
+  {
+    category: "MEMORY",
+    name: "G.Skill Trident Z RGB 32GB",
+    image: "https://m.media-amazon.com/images/I/71dPjYqFJIL._AC_SL1500_.jpg",
+    description: "High-performance RAM with RGB for gamers and creators."
+  },
+  {
+    category: "MEMORY",
+    name: "Kingston Fury Beast 16GB",
+    image: "https://m.media-amazon.com/images/I/61ylZVdY7VL._AC_SL1500_.jpg",
+    description: "Reliable memory module with plug-and-play support."
+  },
+
+  {
+    category: "MOTHERBOARD",
+    name: "MSI MAG B550 TOMAHAWK",
+    image: "https://m.media-amazon.com/images/I/71y5zI7kYFL._AC_SL1500_.jpg",
+    description: "ATX motherboard for AMD Ryzen processors with PCIe 4.0."
+  },
+  {
+    category: "MOTHERBOARD",
+    name: "ASUS ROG STRIX Z790-E",
+    image: "https://m.media-amazon.com/images/I/91ChnIHvMzL._AC_SL1500_.jpg",
+    description: "Gaming motherboard for Intel 13th Gen CPUs."
+  },
+  {
+    category: "MOTHERBOARD",
+    name: "Gigabyte B660M DS3H",
+    image: "https://m.media-amazon.com/images/I/91TA8Hz+vhL._AC_SL1500_.jpg",
+    description: "Micro-ATX board supporting DDR4 and LGA 1700 socket."
+  },
+  {
+    category: "OS",
+    name: "Windows 11 Pro",
+    image: "https://m.media-amazon.com/images/I/51I6OQq-sjL._AC_SL1000_.jpg",
+    description: "Microsoft’s latest operating system with a modern UI."
+  },
+  {
+    category: "OS",
+    name: "Ubuntu 24.04 LTS",
+    image: "https://assets.ubuntu.com/v1/fad7939b-ubuntu-logo32.png",
+    description: "Popular open-source Linux distribution for developers."
+  },
+  {
+    category: "OS",
+    name: "macOS Sonoma",
+    image: "https://upload.wikimedia.org/wikipedia/en/6/60/MacOS_Sonoma.png",
+    description: "Apple’s desktop OS designed for productivity and performance."
+  },
+
+  {
+    category: "INPUT DEVICES",
+    name: "Logitech MX Master 3",
+    image: "https://m.media-amazon.com/images/I/61nPiOOv9BL._AC_SL1500_.jpg",
+    description: "Ergonomic wireless mouse with programmable buttons."
+  },
+  {
+    category: "INPUT DEVICES",
+    name: "Razer Huntsman V2",
+    image: "https://m.media-amazon.com/images/I/71DXTZQ9eaL._AC_SL1500_.jpg",
+    description: "Mechanical gaming keyboard with optical switches."
+  },
+  {
+    category: "INPUT DEVICES",
+    name: "Wacom Intuos Pro",
+    image: "https://m.media-amazon.com/images/I/81ZRUzsIWCL._AC_SL1500_.jpg",
+    description: "Professional pen tablet for digital artists and designers."
+  },
+
+  {
+    category: "OUTPUT DEVICE",
+    name: "LG Ultragear 27GP950",
+    image: "https://m.media-amazon.com/images/I/91wYhNlIAhL._AC_SL1500_.jpg",
+    description: "4K gaming monitor with 144Hz refresh rate."
+  },
+  {
+    category: "OUTPUT DEVICE",
+    name: "HP LaserJet MFP M234dwe",
+    image: "https://m.media-amazon.com/images/I/61wQTTs2m3L._AC_SL1500_.jpg",
+    description: "Monochrome laser printer with fast duplex printing."
+  },
+  {
+    category: "OUTPUT DEVICE",
+    name: "JBL Quantum 800",
+    image: "https://m.media-amazon.com/images/I/71NlIPwF2FL._AC_SL1500_.jpg",
+    description: "Gaming headset with spatial audio and active noise cancellation."
+  },
+
+  {
+    category: "SOFTWARE",
+    name: "Adobe Photoshop",
+    image: "https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg",
+    description: "Industry-standard image editing and design software."
+  },
+  {
+    category: "SOFTWARE",
+    name: "Visual Studio Code",
+    image: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg",
+    description: "Lightweight, extensible code editor from Microsoft."
+  },
+  {
+    category: "SOFTWARE",
+    name: "VMware Workstation",
+    image: "https://m.media-amazon.com/images/I/51+SeYHdIfL._AC_SL1024_.jpg",
+    description: "Professional-grade virtualization software for developers."
+  },
+
+  {
+    category: "OTHERS",
+    name: "NZXT H510 Case",
+    image: "https://m.media-amazon.com/images/I/71lK-A3RDdL._AC_SL1500_.jpg",
+    description: "Mid-tower ATX case with clean design and airflow."
+  },
+  {
+    category: "OTHERS",
+    name: "Corsair RM750x PSU",
+    image: "https://m.media-amazon.com/images/I/71l5lJzNEDL._AC_SL1500_.jpg",
+    description: "750W fully modular PSU with 80+ Gold efficiency."
+  },
+  {
+    category: "OTHERS",
+    name: "Noctua NH-D15 Cooler",
+    image: "https://m.media-amazon.com/images/I/71Ck6K2YfOL._AC_SL1500_.jpg",
+    description: "Dual tower CPU air cooler with high thermal performance."
+  }
+];
+
+    let container=document.getElementById('item-container');
+    for(let element of devices)
+    {
+        container.innerHTML+=`
+        <div class="item">
+          <img src='${element.image}' alt='${element.name}'>
+          <h3>${element.name}</h3>
+          <p>${element.description}</p>
+        </div>
+        `
+    }
+    document.getElementById('button').addEventListener('click',()=>{
+        let pattern=document.getElementById('search').value;
+        let searchDevices=devices.filter((element)=>element.name.includes(pattern)||element.description.includes(pattern));
+        container.textContent='';
+        for(let element of searchDevices) {
+         container.innerHTML+=`
+        <div class="item">
+          <img src='${element.image}' alt='${element.name}'>
+          <h3>${element.name}</h3>
+          <p>${element.description}</p>
+        </div>
+        `
+    }
+    })
+    document.getElementById('all').addEventListener('click',()=>{
+        let pattern='ALL';
+        let searchDevices=devices.filter((element)=>element.category.includes(pattern));
+        container.textContent='';
+        for(let element of searchDevices) {
+         container.innerHTML+=`
+        <div class="item">
+          <img src='${element.image}' alt='${element.name}'>
+          <h3>${element.name}</h3>
+          <p>${element.description}</p>
+        </div>
+        `
+    }
+    });
+  </script>
+</body>
+</html>

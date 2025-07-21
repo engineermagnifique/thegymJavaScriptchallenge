@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Input Filter</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f6f8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 50px 20px;
+    }
+
+    #input {
+      width: 300px;
+      padding: 10px 15px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      transition: border 0.3s ease;
+    }
+
+    #input:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+
+    #list {
+      list-style: none;
+      padding: 0;
+      width: 300px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+    }
+
+    #list li {
+      padding: 12px 16px;
+      border-bottom: 1px solid #eee;
+      font-size: 16px;
+      color: #333;
+      cursor: default;
+    }
+
+    #list li:last-child {
+      border-bottom: none;
+    }
+
+    #list li:hover {
+      background-color: #f0f8ff;
+    }
+  </style>
+</head>
+<body>
+  <input type="text" id="input" placeholder="Filter..." />
+  <ul id="list">
+    <li>paris</li>
+    <li>berlin</li>
+    <li>new york</li>
+    <li>sao paulo</li>
+    <li>hong kong</li>
+    <li>vienna</li>
+  </ul>
+  <script>
+    let searchInput=document.getElementById('input');
+    let copiedList;
+    searchInput.addEventListener('input',()=>{
+        let ul=document.querySelectorAll("ul li");
+        console.log([...ul]);
+       for(let element of ul)
+       {
+         let pattern=element.textContent;
+         if(!pattern.includes(searchInput.value))
+         {
+           // element.remove();
+           element.hidden=true;
+         }
+       }
+       if(input.value==='')
+       {
+        for(let element of ul)
+       {
+        element.hidden=false;
+       }
+       } 
+    })
+  </script>
+</body>
+</html>
